@@ -1,0 +1,110 @@
+/* Hiding All None requiring Elements*/
+.search_box {
+  display: none;
+}
+.social_links{
+  display: none;
+}
+.navmenu{
+  display: none;
+}
+.side_bar{
+  display: none;
+}
+.catagory{
+  display: none;
+}
+
+
+/*        End.. !!!       */
+
+body {
+  /* background: url(../src/background.jpg); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid transparent;
+  height: fit-content;
+  width: auto;
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar{
+  display: none;
+}
+.form {
+  min-height: 400px;
+  max-height: 600px;
+  width: 700px;
+  top: 20vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 16px gray;
+  border-radius: 25px;
+  background: #fff;
+  position: relative;
+  margin: 0 auto;
+  z-index: 1001;
+  transition: ease .5s;
+}
+.form:hover{
+  top: 19.9vh;
+  /* margin: 15vh auto; */
+  box-shadow: 0px 0px 20px black;
+  transition: ease .5s;
+}
+.form h1{
+  margin-bottom: 50px;
+  color: blue;
+  text-align: center;
+  padding-top: 15px;
+}
+.form .inpbox{
+  display: block;
+  position: relative;
+  margin: 10px auto;
+  width: 35%;
+  padding: 10px 5px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0px 0px 8px gray;
+}
+.form .inpbox:hover{
+  box-shadow: 0px 0px 12px black;
+  top: 1px;
+}
+.form .inpbox:placeholder-shown{
+  outline: none;
+  font-size: 15px;
+  border: none;
+  font-family: 'FontAwesome';
+}
+.form #login{
+  display: block;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px gray;
+  padding: 10px 10px;
+  background: white;
+  font-size: 14px;
+  margin: 25px auto;
+  width: 15%;
+  border-radius: 5px;
+}
+.form #login:hover{
+  box-shadow: 1px 1px 12px green;
+  margin: 24px auto;
+}
+.showAlert{
+  position: relative;
+  color: red;
+  font-size: 14px;
+  margin: 10px auto;
+  width: fit-content;
+}
+.blue{
+  color: black;
+  font-size: 16px;
+}
+.blue a{
+  text-decoration: none;
+  color: blue;
+}

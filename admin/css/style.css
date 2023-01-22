@@ -1,0 +1,307 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  background: #2a5163;
+}
+
+#container {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  position: absolute;
+}
+
+.tabs {
+  display: flex;
+  flex-basis: 15%;
+  background: #015247;
+  background: teal;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content-box {
+  display: flex;
+  flex-basis: 84.5%;
+  background: honeydew;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabs button {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  display: flex;
+  outline: none;
+  padding: 15px 20%;
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  /* text-transform: uppercase; */
+  cursor: pointer;
+}
+
+.tabs button img {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.tabs button:hover {
+  background: rgb(216, 213, 213);
+  color: #760;
+}
+
+#user_panel,
+#catagories,
+#posts {
+  background: whitesmoke;
+  display: none;
+  max-height: 70vh;
+  justify-content: center;
+  width: 80vw;
+  color: gray;
+  box-shadow: 2px 8px 12px gray;
+  overflow: scroll;
+  border-radius: 10px;
+}
+
+#user_panel {
+  display: flex;
+}
+
+#user_panel::-webkit-scrollbar,
+#catagories::-webkit-scrollbar,
+#posts::-webkit-scrollbar {
+  width: 5px;
+}
+
+.addnew {
+  position: absolute;
+  color: green;
+  cursor: pointer;
+  left: 20%;
+  top: 5%;
+}
+
+.addnew:hover {
+  color: rgb(213, 7, 213);
+}
+#catagoryTable,
+#userTable {
+  width: 100%;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table thead {
+  position: initial;
+}
+
+table thead th {
+  padding: 15px 15px;
+}
+
+table tbody {
+  background: #fff;
+}
+
+table tbody tr {
+  line-height: 20px;
+}
+
+table tbody tr:hover {
+  background: rgba(128, 128, 128, 0.139);
+  border-radius: 10px;
+  /* border-bottom: 1px solid gray; */
+  /* border-bottom: 1px solid #015247; */
+  /* border-top: 1px solid #015247; */
+  color: rgb(57, 57, 57);
+}
+
+table tbody tr td {
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 14px;
+  /* margin-right: 0px; */
+}
+
+table tbody tr td a img {
+  height: 25px;
+  box-sizing: unset;
+  width: 17px;
+  padding: 0px 15px;
+  filter: opacity(0%);
+  transition: 0.3s ease-out;
+}
+
+table tbody tr:hover > td a img {
+  filter: opacity(100%);
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.userAdd-panel,
+.catagoryAdd-panel,
+.postAdd-panel {
+  display: none;
+  position: absolute;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: rgb(255, 240, 240);
+  flex-direction: row;
+  height: fit-content;
+  max-width: 50vw;
+  width: fit-content  ;
+  top: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 9px 13px rgb(199 197 197), -1px -9px 13px rgb(199 197 197);
+}
+
+.reset {
+  display: flex;
+  position: relative;
+  margin: 5px 20px;
+  flex-direction: column;
+  height: 100%;
+  width: fit-content;
+  left: 10px;
+  justify-content: center;
+  text-align: center;
+}
+
+.reset input {
+  box-shadow: 0px 0px 4px gray;
+  margin: 2px auto;
+  padding: 0px 8px;
+  display: block;
+  height: 1.5rem;
+  width: 15rem;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+/* Deprecated Items */
+#userEdit-panel{
+  position: absolute;
+  color: black;
+  display: none;
+  background: rgb(255, 240, 240);
+  top: 20%;
+  left: 20%;
+  height: 40%;
+  width: 75%;
+  border-radius: 10px;
+  box-shadow: 1px 9px 13px rgb(199 197 197), -1px -9px 13px rgb(199 197 197);
+}
+#s{
+  display: block;
+  position: fixed;
+  top: 200px;
+  left: 50px;
+  height: 50px;
+  width: 500px;
+  z-index: 50000;
+  color: red;
+
+}
+
+/* .userEdit-panel .submitBtns {
+  display: flex;
+  position: relative;
+  height: fit-content;
+  width: fit-content;
+  top: 73%;
+  left: 65%;
+} */
+
+/* .userDelete-dialogue,
+.catagoryDelete-dialogue,
+.postDelete-dialogue {
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  height: 30vh;
+  width: 35vw;
+  color: rgb(249, 132, 89);
+  border-radius: 8px;
+  position: absolute;
+  box-shadow: 2px 2px 8px #015247, -2px -2px 8px #015247;
+  background: white;
+} */
+
+/* .userDelete-dialogue p,
+.catagoryDelete-dialogue p,
+.postDelete-dialogue p {
+  font-family: monospace;
+  font-weight: bolder;
+  position: relative;
+  font-size: larger;
+  top: 5%;
+  text-align: center;
+  line-height: 25px;
+} */
+
+/* .userDelete-dialogue > div,
+.catagoryDelete-dialogue > div,
+.postDelete-dialogue > div {
+  position: absolute;
+  display: flex;
+  height: fit-content;
+  width: 100%;
+  top: 75%;
+  background: rgb(238, 238, 238);
+  height: 30%;
+  justify-content: space-between;
+  border-top: 2px solid rgb(255, 94, 36);
+  margin: 0 auto;
+} */
+
+/* Deprecated Items Last Here */
+/* Auxiliaries */
+.axl-btn {
+  display: flex;
+  position: relative;
+  height: fit-content;
+  justify-content: space-evenly;
+  /* width: 15rem; */
+}
+.delCancel,
+.delOk {
+  margin: 0 auto;
+  position: relative;
+  cursor: pointer;
+  background: #76ed7c;
+  color: black;
+  height: auto;
+  width: auto;
+  padding: 5px 10px;
+  margin: 10px 10px;
+  border-radius: 5px;
+  font-size: small;
+  border: none;
+}
+.delCancel:hover {
+  background: rgb(180, 240, 61);
+}
+.delOk {
+  box-shadow: inset 1px 1px 4px gray;
+}
+.delOk:hover {
+  background: yellowgreen;
+}
+/* Auxiliaries End Here */
