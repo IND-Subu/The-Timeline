@@ -1,11 +1,3 @@
-<?php
-    include('../../components/db_connect.php');
-    if (isset($_POST['cname'])) {
-        $name = $_POST['cname'];
-        $sql = "INSERT INTO `catagories` (`index_no`, `Catagory`) VALUES (NULL, '$name')";
-        $result = mysqli_query($conn,$sql);
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +13,7 @@
             <th>Action</th>
         </thead>
     <?php
+        include('../../components/db_connect.php');
         $sql = "Select * from catagories";
         $sql_run = mysqli_query($conn, $sql);
         //  $rows = mysqli_num_rows($run);
@@ -32,7 +25,10 @@
                     <tr>
                         <td>' . $i . '</td>
                         <td>' . $catagory["Catagory"] . '</td>
-                        <td><a href="#" class="edit-pencil"><img src="../src/edit_pencil.png"></a><a href="#" data-id="'.$catagory["index_no"].'" class="delete-btn cdelete"><img src="../src/delete.png"></a></td>
+                        <td>
+                        <a href="#" data-c_eid="'.$catagory["index_no"].'" class="edit-pencil cedit"><img src="../src/edit_pencil.png"></a>
+                        <a href="#" data-c_did="'.$catagory["index_no"].'" class="delete-btn cdelete"><img src="../src/delete.png"></a>
+                        </td>
                     </tr>
                 </tbody>';
             }

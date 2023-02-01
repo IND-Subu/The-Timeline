@@ -9,8 +9,12 @@ echo '
         <input type="text" name="fname" id="fname" value='.$uid['firstName'].'>
         <input type="text" name="lname" id="lname" value='.$uid['lastName'].'>
         <input type="text" name="email" id="email" value='.$uid['email'].'>
-        <input type="text" name="role" id="role" value='.$uid['role'].'>
-        <input type="text" hidden id="sl" value='.$uid['sl'].'>
-        <input type="submit" name="edit-submit" id="edit-submit">
+        <select name="role" id="role">
+            <option value="">Select Role</option>
+            <option value="ADMIN">Admin</option>
+            <option value="USER">User</option>
+        </select>
+        <input type="text" style="display:none" id="sl" value='.$uid['sl'].'>
+        <input type="submit" name="edit-submit" id="uedit-submit">
     </form>';
 ?>

@@ -94,12 +94,16 @@ html {
   left: 20%;
   top: 5%;
 }
-
 .addnew:hover {
   color: rgb(213, 7, 213);
 }
+.addnew a {
+  color: green;
+  text-decoration: none;
+}
 #catagoryTable,
-#userTable {
+#userTable,
+#postTable {
   width: 100%;
 }
 table {
@@ -107,12 +111,14 @@ table {
   width: 100%;
 }
 
-table thead {
+/* table thead {
   position: initial;
-}
+} */
 
 table thead th {
-  padding: 15px 15px;
+  padding: 10px 10px;
+  background: rgb(118, 114, 114);
+  color: #fff;
 }
 
 table tbody {
@@ -122,13 +128,13 @@ table tbody {
 table tbody tr {
   line-height: 20px;
 }
+table tbody:nth-child(even) {
+  background: rgb(234, 251, 247);
+}
 
 table tbody tr:hover {
   background: rgba(128, 128, 128, 0.139);
   border-radius: 10px;
-  /* border-bottom: 1px solid gray; */
-  /* border-bottom: 1px solid #015247; */
-  /* border-top: 1px solid #015247; */
   color: rgb(57, 57, 57);
 }
 
@@ -144,33 +150,48 @@ table tbody tr td a img {
   box-sizing: unset;
   width: 17px;
   padding: 0px 15px;
-  filter: opacity(0%);
-  transition: 0.3s ease-out;
+  visibility: hidden;
+  transition: 0.1s ease-out;
 }
 
 table tbody tr:hover > td a img {
-  filter: opacity(100%);
+  visibility: visible;
   cursor: pointer;
-  transition: 0.3s ease-in;
+  transition: 0.1s ease-in;
 }
 
 .userAdd-panel,
 .catagoryAdd-panel,
 .postAdd-panel {
-  display: none;
   position: absolute;
-  justify-content: space-between;
-  align-items: flex-end;
-  background: rgb(255, 240, 240);
-  flex-direction: row;
-  height: fit-content;
-  max-width: 50vw;
-  width: fit-content  ;
-  top: 10px;
-  border-radius: 10px;
-  box-shadow: 1px 9px 13px rgb(199 197 197), -1px -9px 13px rgb(199 197 197);
+  display: none;
+  height: 100%;
+  top: 0;
+  left: 10px;
+  width: 25vw;
+  flex-direction: column;
+  border-radius: 5px;
+  align-items: center;
+  /* background: rgb(177, 252, 177); */
+  background: rgb(26, 26, 26);
+  outline: 1px solid gray;
+  outline: 2px solid greenyellow;
+  box-shadow: 1px 9px 13px rgb(199 197 197);
 }
-
+.userAdd-panel p,
+.catagoryAdd-panel p {
+  color: white;
+  border-bottom: orangered 4px solid;
+  top: 10%;
+  height: fit-content;
+  width: fit-content;
+  position: relative;
+  font-weight: 600;
+}
+.userAdd-panel .axl-btn,
+.catagoryAdd-panel .axl-btn {
+  bottom: 20%;
+}
 .reset {
   display: flex;
   position: relative;
@@ -188,35 +209,70 @@ table tbody tr:hover > td a img {
   margin: 2px auto;
   padding: 0px 8px;
   display: block;
-  height: 1.5rem;
+  height: 2rem;
   width: 15rem;
   border: none;
   outline: none;
   border-radius: 3px;
 }
 /* Deprecated Items */
-#userEdit-panel{
+#userEdit-panel,
+#catagoryEdit-panel,
+#postEdit-panel {
   position: absolute;
-  color: black;
   display: none;
-  background: rgb(255, 240, 240);
-  top: 20%;
-  left: 20%;
-  height: 40%;
-  width: 75%;
-  border-radius: 10px;
-  box-shadow: 1px 9px 13px rgb(199 197 197), -1px -9px 13px rgb(199 197 197);
+  height: 100%;
+  top: 0;
+  right: 10px;
+  width: 25vw;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: rgb(26, 26, 26);
+  outline: 2px solid greenyellow;
 }
-#s{
-  display: block;
-  position: fixed;
-  top: 200px;
-  left: 50px;
-  height: 50px;
-  width: 500px;
-  z-index: 50000;
-  color: red;
+/* #userEdit-panel form,
+#catagoryEdit-panel form,
+#postEdit-panel form{
 
+} */
+
+#userEdit-panel input,
+#catagoryEdit-panel input,
+#postEdit-panel input {
+  box-shadow: 0px 0px 4px gray;
+  margin: 2px auto;
+  padding: 0px 8px;
+  display: block;
+  height: 2rem;
+  width: 15rem;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+#userEdit-panel input:last-child,
+#catagoryEdit-panel input:last-child,
+#postEdit-panel input:last-child {
+  background: green;
+  margin: 15px auto;
+  box-shadow: 0px 0px 0px;
+  /* padding: 3px auto; */
+  width: 7.5rem;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+#userEdit-panel input:last-child:hover,
+#catagoryEdit-panel input:last-child:hover {
+  background: rgb(175, 239, 46);
+  color: whitesmoke;
+  box-shadow: 0px 0px 4px gold;
+  font-weight: bold;
+}
+#userEdit-panel #role {
+  color: #000;
+  height: 2rem;
+  width: 15rem;
 }
 
 /* .userEdit-panel .submitBtns {
@@ -290,6 +346,7 @@ table tbody tr:hover > td a img {
   height: auto;
   width: auto;
   padding: 5px 10px;
+  box-shadow: 2px 2px 4px gray;
   margin: 10px 10px;
   border-radius: 5px;
   font-size: small;
@@ -297,9 +354,6 @@ table tbody tr:hover > td a img {
 }
 .delCancel:hover {
   background: rgb(180, 240, 61);
-}
-.delOk {
-  box-shadow: inset 1px 1px 4px gray;
 }
 .delOk:hover {
   background: yellowgreen;

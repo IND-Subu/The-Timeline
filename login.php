@@ -25,7 +25,7 @@ if  (!isset($_SESSION['email'])){
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $user = $_POST["user"];
                                 $passwd = $_POST["password"];
-                                        $sql = "Select * from userdata where username = '$user' AND password = '$passwd'";
+                                        $sql = "Select * from userdata where email = '$user' AND password = '$passwd'";
                                         $result = mysqli_query($conn, $sql);
                                         $userdata = mysqli_fetch_assoc($result);
                                         // $userdata = array($userdata['email'], $userdata['role']);
@@ -33,7 +33,7 @@ if  (!isset($_SESSION['email'])){
                                         if ($rows == 1) {
                                             $_SESSION['email'] = $userdata['email'];
                                             $_SESSION['role'] = $userdata['role'];
-                                           if ($_SESSION['role'] == 0) {
+                                           if ($_SESSION['role'] == 1) {
                                             echo '<script>window.location.href="admin/";</script>';
                                            }
                                            else {

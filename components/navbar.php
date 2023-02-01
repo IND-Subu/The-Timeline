@@ -22,10 +22,10 @@ else{
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index</title>
-    <link rel="shortcut icon" href="./src/fav_icon.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="./src/fav_icon.ico" type="image/x-icon"> -->
     <link rel="stylesheet" href="/css/navbar.css" />
     <script src="/js/font_awesome.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet" /> -->
 </head>
 
 <body>

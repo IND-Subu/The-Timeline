@@ -1,3 +1,4 @@
+"use strict";
 var user = document.getElementById("user");
 var user_panel = document.getElementById("user_panel");
 var userAddPanel = document.getElementsByClassName("userAdd-panel");
@@ -51,14 +52,17 @@ post.onclick = function () {
 
 // Add Panel Starting...
 addNew[0].onclick = function () {
+    $('.userAdd-panel').fadeIn();
     userAddPanel[0].style.display = "flex";
 };
 addNew[1].onclick = function () {
+    $('.catagoryAdd-panel').fadeIn();
     catagoryAddPanel[0].style.display = "flex";
 };
-addNew[2].onclick = function () {
-    postAddPanel[0].style.display = "flex";
-};
+// addNew[2].onclick = function () {
+//     $('.postAdd-panel').fadeIn();
+//     postAddPanel[0].style.display = "flex";
+// };
 
 // Edit Panel Section...
 for (
@@ -192,7 +196,8 @@ for (
 ) {
     userAddPanel[0].getElementsByClassName("closeX")[index].onclick =
         function () {
-            userAddPanel[0].style.display = "none";
+            // userAddPanel[0].style.display = "none";
+            $('.userAdd-panel').fadeOut();
         };
 }
 for (
@@ -202,21 +207,25 @@ for (
 ) {
     catagoryAddPanel[0].getElementsByClassName("closeX")[index].onclick =
         function () {
-            catagoryAddPanel[0].style.display = "none";
+            // catagoryAddPanel[0].style.display = "none";
+            $('.catagoryAdd-panel').fadeOut();
         };
 }
-for (
-    let index = 0;
-    index < postAddPanel[0].getElementsByClassName("closeX").length;
-    index++
-) {
-    postAddPanel[0].getElementsByClassName("closeX")[index].onclick =
-        function () {
-            postAddPanel[0].style.display = "none";
-        };
-}
+// for (
+//     let index = 0;
+//     index < postAddPanel[0].getElementsByClassName("closeX").length;
+//     index++
+// ) {
+//     postAddPanel[0].getElementsByClassName("closeX")[index].onclick =
+//         function () {
+//             // postAddPanel[0].style.display = "none";
+//             $('.postAdd-panel').fadeOut();
+//         };
+// }
+// ####################################################################### //
+// ****** JavaScript Jquery Enabled Functions Starting From Here.. ******* //
+// ####################################################################### //
 
-// JavaScript Jquery Enabled Functions Starting From Here..
 $(document).ready(function () {
     // User Data Table loads on #userTable Div..
     function userData() {
@@ -230,7 +239,7 @@ $(document).ready(function () {
     } // Load userData ended.. 
     userData();
 
-    // On click userSubmit Botton functionality..
+    // On click userSubmit Botton data inserting into database..
     $("#userSubmit").on("click", function (e) {
         e.preventDefault();
         if ($('#fname').val() == '') {
@@ -251,7 +260,7 @@ $(document).ready(function () {
             var email = $('#email').val();
             var role = $('#role').val();
             $.ajax({
-                url: "/admin/_partials/userdata.php",
+                url: "/admin/_partials/userdata-submit.php",
                 type: "POST",
                 data: { firstname: fname, lastname: lname, email: email, role: role },
                 success: function (data) {
@@ -263,39 +272,48 @@ $(document).ready(function () {
         }
     }); // User userSubmit Botton coding Ends Here..
 
-    // Catagory Data Table loads on #catagoryTable Div..
-    function catagoryData() {
+    // User Edit Panel * Update user data *
+    // when click on uedit button in userdata.php page update form will appear..
+    $(document).on("click", ".uedit", function () {
+        $('#userEdit-panel').css("display", "flex");
+        $('#userEdit-panel').fadeIn();
+        let id = $(this).data("eid");
         $.ajax({
-            url: '/admin/_partials/catagories.php',
-            type: 'POST',
+            url: "/admin/_partials/useredit.php",
+            type: "POST",
+            data: { eid: id },
             success: function (data) {
-                $("#catagoryTable").html(data);
+                $('#userEdit-panel').html(data);
             }
-        })
-    }
-    catagoryData();
+        });
+    }); // user form popuped..
 
-    $("#catagorySubmit").on("click", function (e) {
+    // Edit the user and update when ckick on uedit-submit button
+    $(document).on("click", "#uedit-submit", function (e) {
         e.preventDefault();
-        if ($('#name').val() == '') {
-            alert('Field Cannot Be Empty');
+        let preventHide = null;
+        let sl = $('#sl').val();
+        let fname = $('#fname').val();
+        let lname = $('#lname').val();
+        let email = $('#email').val();
+        let role = $('#role').val();
+        if (role == "") {
+            alert("Invalid Job Role");
         }
         else {
-            var name = $('#name').val();
             $.ajax({
-                url: "/admin/_partials/catagories.php",
+                url: "/admin/_partials/useredit-form.php",
                 type: "POST",
-                data: { cname: name },
+                data: { id: sl, firstname: fname, lastname: lname, e_mail: email, role_id: role },
                 success: function (data) {
-                    catagoryData();
-                    $('.reset').trigger('reset');
-                    // alert("Data Added Successfully.");
+                    userData();
+                    $('#userEdit-panel').hide();
                 }
-            });
+            })
         }
-    }); // Catagory Data Table Ends Here..
+    }); // User Updated..
 
-    // Delete User
+    // Deleting  User from database..
     $(document).on("click", ".udelete", function () {
         let user = $(this).data("id");
         let element = this;
@@ -309,11 +327,90 @@ $(document).ready(function () {
                 }
             });
         }
-    });
+    }); // User Deleted from Database..
+
+    // ################################################################################ //
+    // ************************* User Section Completed ******************************* //
+    // ################################################################################ //
+
+
+
+
+
+
+
+    // ################################################################################ //
+    // ************************* Catagory Section Started ***************************** //
+    // ################################################################################ //
+
+    // Catagory Data Table loads on #catagoryTable Div..
+    function catagoryData() {
+        $.ajax({
+            url: '/admin/_partials/catagories.php',
+            type: 'POST',
+            success: function (data) {
+                $("#catagoryTable").html(data);
+            }
+        })
+    }
+    catagoryData(); // All catagories loaded to webpage..
+
+    // Insert Catagory Data into Database on click in catagorySubmit Botton..
+    $("#catagorySubmit").on("click", function (e) {
+        e.preventDefault();
+        if ($('#catagory_name').val() == '') {
+            alert('Field Cannot Be Empty');
+        }
+        else {
+            var catagory = $('#catagory_name').val();
+            $.ajax({
+                url: "/admin/_partials/catagories-submit.php",
+                type: "POST",
+                data: { catagory_id: catagory },
+                success: function (data) {
+                    catagoryData();
+                    $('.reset').trigger('reset');
+                    // alert("Data Added Successfully.");
+                }
+            });
+        }
+    }); // Catagory inserted the todatabase successfully..
+
+
+    // Catagory Edit Panel * Update Catagory data *
+    // when click on cedit button in catagories.php page update form will appear..
+    $(document).on("click", ".cedit", function () {
+        $('#catagoryEdit-panel').css("display", "flex");
+        let id = $(this).data("c_eid");
+        $.ajax({
+            url: "/admin/_partials/catagoriesedit.php",
+            type: "POST",
+            data: { c_eid: id },
+            success: function (data) {
+                $('#catagoryEdit-panel').html(data);
+            }
+        });
+    }); // Catagory form popuped..
+
+    // Edit the user and update when ckick on uedit-submit button
+    $(document).on("click", "#cedit-submit", function (e) {
+        e.preventDefault();
+        let cid = $('#c_id').val();
+        let catagory = $('#c_name').val();
+        $.ajax({
+            url: "/admin/_partials/catagoryedit-form.php",
+            type: "POST",
+            data: { c_id: cid, catagory: catagory },
+            success: function (data) {
+                catagoryData();
+                $('#catagoryEdit-panel').hide();
+            }
+        })
+    }); // Catagory Updated..
 
     // Delete Catagory
     $(document).on("click", ".cdelete", function () {
-        let catagory = $(this).data("id");
+        let catagory = $(this).data("c_did");
         let element = this;
         if (confirm('Delete This Catagory?')) {
             $.ajax({
@@ -327,38 +424,25 @@ $(document).ready(function () {
         }
     });
 
+    // ################################################################################ //
+    // *********************** Catagory Section Completed ***************************** //
+    // ################################################################################ //
 
-    // User Edit Panel
 
-    $(document).on("click", ".uedit", function () {
-        $('#userEdit-panel').show();
-        let id = $(this).data("eid");
+
+    // ################################################################################ //
+    // ************************* Post Section Completed ******************************* //
+    // ################################################################################ //
+    // Post Data Table loads on #catagoryTable Div..
+    function postData() {
         $.ajax({
-            url: "/admin/_partials/useredit.php",
-            type: "POST",
-            data: { eid: id },
+            url: '/admin/_partials/posts.php',
+            type: 'POST',
             success: function (data) {
-                $('#userEdit-panel').html(data);
-            }
-        });
-    });
-
-
-    $(document).on("click", "#edit-submit", function (e) {
-        e.preventDefault();
-        let sl = $('#sl').val();
-        let fname = $('#fname').val();
-        let lname = $('#lname').val();
-        let email = $('#email').val();
-        let role = $('#role').val();
-        $.ajax({
-            url: "/admin/_partials/useredit-form.php",
-            type: "POST",
-            data: { id:sl, firstname: fname, lastname: lname, e_mail: email, role_id: role },
-            success: function (data) {
-                userData();
-                $('#userEdit-panel').hide();
+                $("#postTable").html(data);
             }
         })
-    });
+    }
+    postData(); // All Posts loaded to webpage..
+
 });
